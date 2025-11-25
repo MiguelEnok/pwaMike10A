@@ -1,274 +1,383 @@
-    /* Reset y fuentes */
-    * {
-        margin: 0px;
-        padding: 0px;
-        text-decoration: none;
-        font-family: 'Open Sans', Verdana;
-    }
+/* GENERALES */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
 
-    html,
-    body {
-        overflow-x: hidden;
-    }
+.container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
 
-    body {
-        background: white;
-    }
+.clearfix {
+    clear: both;
+}
 
-    .clearfix {
-        clear: both;
-        float: none;
-    }
+h2.subheader {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
 
+h2.subheader::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #FB314E; /* Color rojo de Doom */
+    margin: 10px auto 0 auto;
+}
+
+/* HEADER */
+#main-header {
+    background: #333;
+    color: white;
+    padding: 20px 0;
+    border-bottom: 4px solid #FB314E;
+}
+
+#main-header h1 {
+    margin: 0;
+    float: left;
+    color: #FB314E;
+}
+
+#main-header #menu {
+    float: right;
+    margin-top: 10px;
+}
+
+#main-header #menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#main-header #menu ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+#main-header #menu ul li a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#main-header #menu ul li a:hover {
+    color: #FB314E;
+}
+
+/* SLIDER */
+#slider {
+    background: url('../img/bg.jpg') no-repeat center center/cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#slider h2 {
+    font-size: 4em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* SERVICES & VIDEOS */
+#services, #videos {
+    padding: 40px 0;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.service, .video {
+    width: 48%;
+    float: left;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid #eee;
+    background: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.service:nth-child(odd), .video:nth-child(odd) {
+    margin-right: 4%;
+}
+
+.service img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.service h3 {
+    color: #FB314E;
+    margin-top: 0;
+}
+
+.video iframe {
+    width: 100%;
+    height: 250px;
+    border: none;
+    margin-bottom: 15px;
+}
+
+/* FOOTER */
+#footer {
+    background: #333;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+#footer p {
+    margin: 0 0 20px 0;
+}
+
+#footer #networks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block; /* Para centrar los iconos */
+}
+
+#footer #networks li {
+    display: inline;
+    margin: 0 10px;
+}
+
+#footer #networks li img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+#footer #networks li img:hover {
+    transform: scale(1.1);
+}
+
+/* ESTILOS PARA LA SECCIÓN DE CONTACTOS (CRUD) */
+#contacts {
+    padding: 40px 0;
+    background: #eee;
+}
+
+#contacts .container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas para los campos */
+    gap: 20px; /* Espacio entre los elementos del grid */
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#contact-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block; /* Asegura que la etiqueta esté en su propia línea si es necesario */
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: calc(100% - 20px); /* Ajustar el ancho para padding */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box; /* Incluir padding y border en el width */
+}
+
+#contact-form textarea {
+    grid-column: 1 / -1; /* Que el textarea ocupe las dos columnas */
+    min-height: 80px;
+    resize: vertical;
+}
+
+#contact-form button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: auto; /* Ancho automático para botones */
+    margin-right: 10px; /* Espacio entre botones */
+}
+
+#btn-save {
+    background-color: #FB314E; /* Rojo de Doom */
+    color: white;
+}
+
+#btn-save:hover {
+    background-color: #d12a42;
+}
+
+#btn-cancel {
+    background-color: #555; /* Gris oscuro para cancelar */
+    color: white;
+}
+
+#btn-cancel:hover {
+    background-color: #333;
+}
+
+/* Estilo para el mensaje de estado */
+#message {
+    grid-column: 1 / -1; /* Que ocupe todo el ancho */
+    text-align: center;
+    padding: 0; /* Lo gestiona crud.js */
+    margin: 0; /* Lo gestiona crud.js */
+    border-radius: 4px;
+    font-weight: bold;
+    display: block; /* Asegurarse de que ocupe su propio espacio */
+}
+
+/* TABLA DE CONTACTOS */
+#contacts-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#contacts-list th,
+#contacts-list td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+#contacts-list th {
+    background-color: #333;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+#contacts-list tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#contacts-list tbody tr:hover {
+    background-color: #ddd;
+}
+
+#contacts-list td button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+.btn-edit {
+    background-color: #007bff; /* Azul para editar */
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Rojo para eliminar */
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Ajustes para que los campos de Nombre, Correo y Teléfono queden en la misma línea */
+#contact-form > div { /* Contenedor para cada par label/input si es necesario, o directamente los elementos */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Asegurar que los inputs se extiendan en su columna */
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form input[type="tel"] { /* Agregado type="tel" si lo usas */
+    width: 100%; /* Ocupar el 100% del espacio disponible en su celda del grid */
+}
+
+/* Si quieres que los botones de guardar y cancelar se alineen a la derecha y en la misma fila */
+#contact-form .button-group {
+    grid-column: 1 / -1; /* Ocupar todo el ancho */
+    text-align: right;
+    padding-top: 10px;
+}
+
+/* Ajuste específico para que los campos de texto no queden pegados al label */
+#contact-form label + input,
+#contact-form label + textarea {
+    margin-top: 5px;
+}
+
+/* MEDIA QUERIES para responsividad */
+@media (max-width: 768px) {
     .container {
-        width: 85%;
-        margin: 0px auto;
+        width: 95%;
     }
 
-    /* Cabecera */
-    #main-header {
-        background: white;
-        height: 100px;
-        line-height: 85px;
-        /* border-bottom: 1px solid black; */
+    #main-header #menu {
+        float: none;
+        text-align: center;
+        margin-top: 20px;
     }
 
-    #logo {
-        width: 63%;
-        float: left;
-    }
-
-    #logo h1 {
-        font-weight: bold;
-        font-size: 25px;
-        color: #3182fb;
-    }
-
-    #menu {
-        width: 380px;
-        float: left;
-    }
-
-    #menu ul li {
-        list-style: none;
-        float: left;
-        margin-left: 15px;
-        margin-right: 15px;
-    }
-
-    #menu ul li a {
-        color: black;
-    }
-
-    #menu ul li a:hover {
-        color: #3182fb;
-    }
-
-    /* Slider */
-    #slider {
-        height: 300px;
-        background: #3182fb;
-        overflow: hidden;
+    #main-header #menu ul li {
+        margin: 0 10px;
     }
 
     #slider h2 {
-        font-size: 40px;
-        text-align: center;
-        color: white;
-        line-height: 290px;
-        text-shadow: 0px 0px 6px black;
+        font-size: 3em;
     }
 
-    .subheader {
-        font-size: 34px;
-        color: #333;
-        text-align: center;
-        margin-top: 40px;
-        margin-bottom: 30px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid rgba(251, 49, 78, 0.3);
+    .service, .video {
+        width: 100%;
+        float: none;
+        margin-right: 0;
     }
 
-    .service,
-    .video {
-        width: 33%;
-        text-align: center;
-        float: left;
-        margin-top: 20px;
-        margin-bottom: 20px;
+    #contact-form {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
     }
 
-    .service img {
-        height: 300px;
-        margin-bottom: 20px;
+    #contact-form textarea {
+        grid-column: auto;
     }
-
-    .service h3 {
-        margin-bottom: 10px;
+    
+    #contact-form .button-group {
+        text-align: center; /* Centrar botones en móvil */
     }
-
-    .service p,
-    .video p {
-        color: #444;
-        text-align: justify;
-        display: block;
-        width: 85%;
-        margin: 0px auto;
-    }
-
-
-    .video iframe {
-        width: 80%;
-        height: 170px;
-    }
-
-
-    #footer {
-        background: #333;
-        padding-top: 5px;
-        padding-bottom: 40px;
-        margin-top: 30px;
-        text-align: center;
-        color: white;
-    }
-
-    #footer .subheader {
-        color: white;
-    }
-
-    #networks {
-        display: block;
-        width: 216px;
-        margin: 0px auto;
-        list-style: none;
-        margin-bottom: 20px;
-        margin-top: 20px;
-    }
-
-    #networks li {
-        float: left;
-        margin-left: 20px;
-        margin-right: 20px;
-        transition: all 300ms;
-    }
-
-    #networks li:hover {
-        opacity: 0.8;
-        transform: scale(1.1, 1.1);
-    }
-
-    @media (max-width: 1225px) {
-        .container {
-            width: 95%;
-        }
-    }
-
-    @media (max-width: 1085px) {
-        #main-header {
-            height: 70px;
-            line-height: 65px;
-        }
-    }
-
-    @media (max-width: 999px) {
-        #logo {
-            width: 227px;
-            float: none;
-            margin: 0px auto;
-        }
-
-        #menu {
-            float: none;
-            margin: 0px auto;
-        }
-
-        /* Estilo para el slider de la marquesina */
-        #slider {
-            overflow: hidden;
-            height: 150px;
-        }
-
-        #slider h2 {
-            font-size: 30px;
-            line-height: 30px;
-            margin-top: 60px;
-        }
-    }
-
-    @media (max-width: 700px) {
-
-        .service,
-        .video {
-            width: 70%;
-            float: none;
-            margin: 0px auto;
-            margin-top: 20px;
-            margin-bottom: 40px;
-        }
-
-        .service {
-            width: 50%;
-            text-align: justify;
-        }
-
-        .service img {
-            height: 300px;
-            margin-bottom: 20px;
-        }
-
-        .service p,
-        .video p {
-            margin-top: 20px;
-        }
-
-        .video iframe {
-            width: 80%;
-            height: 230px;
-        }
-    }
-
-    @media (max-width: 460px) {
-        #slider h2 {
-            font-size: 25px;
-            line-height: 30px;
-            margin-top: 60px;
-        }
-    }
-
-    @media (max-width: 377px) {
-        #menu {
-            width: 100%;
-            text-align: center;
-        }
-
-        #menu ul li {
-            margin-left: 4%;
-            margin-right: 4%;
-            float: none;
-        }
-
-        /* texto de marquesina con tamaño 377 */
-        #slider h2 {
-            margin-top: 50px;
-        }
-
-        .service,
-        .video {
-            width: 90%;
-        }
-
-        .video iframe {
-            width: 80%;
-            height: 150px;
-        }
-    }
-
-    @media (max-width: 345px) {
-        #main-header {
-            height: auto;
-        }
-
-        #menu ul li {
-            float: none;
-        }
-    }
+}
