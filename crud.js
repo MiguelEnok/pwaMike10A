@@ -15,6 +15,31 @@ let idToEdit = '';
 // Referencia a la colección 'contactos'
 const contactsCollection = collection(db, "contactos");
 
+// ** LÓGICA DE NOTIFICACIÓN NATIVA (NUEVA) **
+// Función para mostrar notificación nativa
+const showNativeNotification = (title, options) => {
+    // 1. Verificar si el navegador soporta Notificaciones
+    if (!("Notification" in window)) {
+        console.warn("Este navegador no soporta notificaciones de escritorio.");
+        return;
+    }
+
+    // 2. Pedir permiso si aún no se ha concedido
+    if (Notification.permission === "default") {
+        Notification.requestPermission().then(permission => {
+            if (permission === "granted") {
+                new Notification(title, options);
+            }
+        });
+    } else if (Notification.permission === "granted") {
+        // 3. Disparar la notificación si el permiso está concedido
+        new Notification(title, options);
+    }
+    // Si el permiso es "denied", no hacemos nada.
+};
+// ** FIN LÓGICA DE NOTIFICACIÓN NATIVA **
+
+
 // Función para mostrar mensajes
 const showMessage = (msg, type = "success") => {
     message.textContent = msg;
@@ -87,9 +112,29 @@ form.addEventListener('submit', async (e) => {
 });
 
 // ** L E E R (En tiempo real con onSnapshot) **
+let initialLoad = true; // Variable para controlar la carga inicial
+
 const getContacts = () => {
     // Escucha los cambios en tiempo real
     onSnapshot(contactsCollection, (snapshot) => {
+        
+        // --- LÓGICA PARA DISPARAR LA NOTIFICACIÓN EN TIEMPO REAL ---
+        if (!initialLoad && !snapshot.empty) {
+            // Busca si hay algún documento que fue 'added' (añadido)
+            const newDocChange = snapshot.docChanges().find(change => change.type === 'added');
+
+            if (newDocChange) {
+                const newContact = newDocChange.doc.data();
+                // Dispara la notificación nativa del navegador a todos los usuarios
+                showNativeNotification(`¡Nuevo Contacto de DOOM!`, {
+                    body: `${newContact.nombre} se ha unido a la comunidad.`,
+                    icon: '/img/96.png' // Usamos un icono de tu manifest
+                });
+            }
+        }
+        initialLoad = false; // Desactiva el flag después de la primera carga
+
+        // --- LÓGICA DE RENDERIZADO DE TABLA (Original) ---
         contactsTableBody.innerHTML = ''; // Limpiar la tabla
 
         if (snapshot.empty) {
